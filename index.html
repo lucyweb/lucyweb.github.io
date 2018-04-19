@@ -1,5 +1,37 @@
 <!DOCTYPE html>
+<html>
+<body> <!-- ex5 180321-->
+<p id="p1" style="color:blue">apple, pear, peach, cherry</p>
+<br>
+Keyin fruit:<input type="text" id="n1">
+<button type="button" id="b1" onclick="myS()">Click</button> 
+<br>
+
+<p id="p2">a</p>
+<p id="p3">b</p>
+<br>
+
+<script>
+	var str = "", i = 0;
+	var x = document.getElementById("p1").innerHTML;
+	var arr = x.split(","); //透過split方法會將字串str轉成陣列array
+	var cnt = arr.length;
+	for (;i < cnt; i++) {
+		str += arr[i] + "<br>";
+	}
+	function myS() {
+		var msg = "";
+		var y = document.getElementById("n1").value;
+		var pos =  x.indexOf(y);  //indexOf搜尋字串是否存在
+		if (pos != -1) {
+			msg = "Yes! Position is ".concat(pos); //concat方法將字串相加
+		} else {
+			msg = "Ohh! Lost!";
+		}
+		document.getElementById("p2").innerHTML = msg;
+	}
+	
+	document.getElementById("p3").innerHTML = str;
+</script> 
 <body>
-<h1>Hello World</h1>
-</body>
 </html>
