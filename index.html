@@ -1,37 +1,68 @@
 <!DOCTYPE html>
 <html>
-<body> <!-- ex5 180321-->
-<p id="p1" style="color:blue">apple, pear, peach, cherry</p>
-<br>
-Keyin fruit:<input type="text" id="n1">
-<button type="button" id="b1" onclick="myS()">Click</button> 
-<br>
+<head>
+<style>
+#myPro {
+  width: 100%;
+  background-color: #ddd;
+}
 
-<p id="p2">a</p>
-<p id="p3">b</p>
-<br>
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+</style>
+</head>
 
+<br>
+<button id="b1" onclick="go(1)">1.click me</button>  
+<button id="b2" onclick="go(2)">2.click me</button>
+<button id="b3" onclick="go(3)">3.click me</button>
+<button id="b4" onclick="go(4)">4.click me</button>
+<br>
+<br>
+<p id="p1" ></p>
+<br>
+<div id="myPro">
+  <div id="myBar"></div>
+</div>
+
+<body>
 <script>
-	var str = "", i = 0;
-	var x = document.getElementById("p1").innerHTML;
-	var arr = x.split(","); //透過split方法會將字串str轉成陣列array
-	var cnt = arr.length;
-	for (;i < cnt; i++) {
-		str += arr[i] + "<br>";
-	}
-	function myS() {
-		var msg = "";
-		var y = document.getElementById("n1").value;
-		var pos =  x.indexOf(y);  //indexOf搜尋字串是否存在
-		if (pos != -1) {
-			msg = "Yes! Position is ".concat(pos); //concat方法將字串相加
-		} else {
-			msg = "Ohh! Lost!";
-		}
-		document.getElementById("p2").innerHTML = msg;
+function go(s) {
+	var obj = document.getElementById("myBar");
+	var width = 0;
+	var mess = "";
+	if (s == 1) {
+	  width = 1;
+	  mess = "You're really cool.";
+	} else if(s == 2) {
+	  width = 25;
+	  mess = "You're amazing.";
+	} else if (s == 3) {
+	  width = 50;
+	  mess = "Don't give up! You are almost done.";
+	} else {
+	  width = 75;
+	  mess = " Yes! You did a great job.";
 	}
 	
-	document.getElementById("p3").innerHTML = str;
-</script> 
-<body>
+	var str = document.getElementById("p1");
+	str.innerHTML = mess;
+	
+	var id = setInterval(frame,10,s,s*25); //顯示Bar process, 利用setInterval方法; 參數1: s代表第幾個按鍵, 參數3: s*25表上限
+	
+	function frame(x1,x2) {  //改變寬度大小, 每一關進度是25%
+		if (width >= x2) {
+			clearInterval(id);
+		} else {
+		  width++;
+		  obj.style.width = width + '%'; // change width
+		}
+	}
+}  
+
+</script>
+</body>
 </html>
