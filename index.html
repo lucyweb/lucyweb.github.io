@@ -14,7 +14,13 @@
 }
 </style>
 </head>
-
+Start Time: <input id= "i1" type="text"  name="start_time" readonly>
+<button id="bs" onclick="getD(1,'bs','i1')">Click</button>
+<br>
+End Time: <input id= "i2" type="text"  name="end_time" readonly>
+<button id="be" onclick="getD(2,'be','i2')">Click</button>  
+<p id="p0" ></p>
+<br>
 <br>
 <button id="b1" onclick="go(1)">1.click me</button>  
 <button id="b2" onclick="go(2)">2.click me</button>
@@ -55,10 +61,10 @@ function go(s) {
 	var str = document.getElementById("p1");
 	str.innerHTML = res.bold();  //改變字粗體
 	
-	var id = setInterval(frame,10,s,s*25); //顯示Bar process, 利用setInterval方法; 參數1: s代表第幾個按鍵, 參數3: s*25表上限
+	var id = setInterval(frame,10,s*25); //顯示Bar process, 利用setInterval方法; 參數1: s代表第幾個按鍵, 參數3: s*25表上限
 	
-	function frame(x1,x2) {  //改變寬度大小, 每一關進度是25%
-		if (width >= x2) {
+	function frame(x1) {  //改變寬度大小, 每一關進度是25%
+		if (width >= x1) {
 			clearInterval(id);
 		} else {
 		  width++;
@@ -66,7 +72,22 @@ function go(s) {
 		}
 	}
 }  
-
+function getD(stp,id, id1) {
+	var d = new Date();
+	var mess = "";
+	
+	var df = fullD(); //取得自訂日期格式
+	function fullD() {
+		return  d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes();
+	}
+	if (stp == 1) {
+		mess = "Start Time";
+	} else {
+		mess = "End  Time"
+	}
+	 
+	 document.getElementById(id1).value = df;
+}
 </script>
 </body>
 </html>
