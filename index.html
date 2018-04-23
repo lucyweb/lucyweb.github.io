@@ -33,23 +33,27 @@
 function go(s) {
 	var obj = document.getElementById("myBar");
 	var width = 0;
-	var mess = "";
+	var mess = "", res = "";
 	if (s == 1) {
 	  width = 1;
 	  mess = "You're really cool.";
+	  res = mess.fontcolor("red"); //改變字顏色
 	} else if(s == 2) {
 	  width = 25;
 	  mess = "You're amazing.";
+	  res = mess.fontcolor("orange");
 	} else if (s == 3) {
 	  width = 50;
 	  mess = "Don't give up! You are almost done.";
+	  res = mess.fontcolor("orange");
 	} else {
 	  width = 75;
 	  mess = " Yes! You did a great job.";
+	  res = mess.fontcolor("green");
 	}
 	
 	var str = document.getElementById("p1");
-	str.innerHTML = mess;
+	str.innerHTML = res.bold();  //改變字粗體
 	
 	var id = setInterval(frame,10,s,s*25); //顯示Bar process, 利用setInterval方法; 參數1: s代表第幾個按鍵, 參數3: s*25表上限
 	
